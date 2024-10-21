@@ -126,6 +126,18 @@ public class Library {
         return bookWrittenByAuthor;
     }
     /**
+     * This method do the <b>sorting process</b> based on Titles of collection of books.
+     * <b>note:</b> We use of sort method in collections and customize that to sort books by titles.
+     * @return nothing
+     */
+    public void sortBooksByTitle() {
+        books.sort(new Comparator<Book>() {
+            public int compare(Book book1, Book book2) {
+                return book1.getTitle().compareTo(book2.getTitle());
+            }
+        });
+    }
+    /**
      * This method shows us the <b>information</b> of a library and print that in console.
      * @return nothing
      */
