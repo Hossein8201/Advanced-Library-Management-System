@@ -114,12 +114,12 @@ public class Book {
      * @return nothing
      */
     public void capitalizeTitle() {
-        boolean isCapitalizable = true;     // Flag that shows the state of letter.
+        boolean toCapitalize = true;     // Flag that shows the state of letter.
         for (int i = 0; i < title.length(); i++) {
-            if (title.charAt(i) == ' ') isCapitalizable = true;
-            else if (isCapitalizable){
+            if (title.charAt(i) == ' ') toCapitalize = true;
+            else if (toCapitalize){
                 title.setCharAt(i, Character.toUpperCase(title.charAt(i)));     // Uppercase the letter next space.
-                isCapitalizable = false;
+                toCapitalize = false;
             }
             else title.setCharAt(i, Character.toLowerCase(title.charAt(i)));   // Lowercase the rest of the word
         }
