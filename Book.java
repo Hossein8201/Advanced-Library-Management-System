@@ -53,26 +53,33 @@ public class Book {
     /*
     Next we need to use getter and setter to apply the changes for private variables
     */
-    /** @return String type that is id. */
+    /** Getter method to get the value of Id parameter.
+     * @return String type that is id. */
     public String getId() {return id;}
-    /** @return StringBuilder type that is title. */
+    /** Getter method to get the value of Title parameter.
+     * @return StringBuilder type that is title. */
     public StringBuilder getTitle() {return title;}
-    /** @return String type that is author. */
+    /** Getter method to get the value of author parameter.
+     * @return String type that is author. */
     public String getAuthor() {return author;}
-    /** @return boolean type that is isAvailable parameter. */
+    /** Getter method to get the value of Available boolean parameter.
+     * @return boolean type that is isAvailable parameter. */
     public boolean getIsAvailable() {return isAvailable;}
-    /** @return an arraylist of String type. */
+    /** Getter method to get the value of tracking a book parameter.
+     * @return an arraylist of String type. */
     public ArrayList<String> getTrackBorrowingTimes() { return trackBorrowingTimes; }
-    /** @return an arraylist of Genre class*/
+    /** Getter method to get the value of genres of a book parameter.
+     * @return an arraylist of Genre class*/
     public ArrayList<Genre> getGenres() {return genres;}
-    /** @return an int type. */
+    /** Getter method to get the value of borrow counting parameter.
+     * @return an int type. */
     public int getBorrowCount() {return borrowCount;}
     /*
     Now we identify the Setter methods.
     */
     /** Setter method to change the value of id by considering that must be <b>exactly 5 characters</b>.
      * @param id is input variable.
-     * @return nothing*/
+     * @return nothing.*/
     public void setId(String id) {
         if(id.length() == 5)    this.id = id;         // The length of id must be exactly 5 characters
         else {
@@ -82,23 +89,23 @@ public class Book {
     }
     /** Setter method to change the value of title.
      * @param title is input variable.
-     * @return nothing*/
+     * @return nothing.*/
     public void setTitle(String title) {this.title = new StringBuilder(title);}
     /** setter method to change the value of author.
      * @param author is input variable.
-     * @return nothing*/
+     * @return nothing.*/
     public void setAuthor(String author) {this.author = author;}
     /** setter method to change the value of isAvailable.
      * @param isAvailable is input variable.
-     * @return nothing*/
+     * @return nothing.*/
     public void setIsAvailable(boolean isAvailable) {this.isAvailable = isAvailable;}
     /** setter method to add a new path to trackBorrowingTimes. also plus one the borrow counting parameter.
      * @param trackBorrowingTimes is input variable.
-     * @return nothing*/
+     * @return nothing.*/
     public void setTrackBorrowingTimes(String trackBorrowingTimes) {this.trackBorrowingTimes.add(trackBorrowingTimes); borrowCount++;}
     /** setter method to change one or multiple values in genres.
      * @param genres is input variable that is ArrayList type.
-     * @return nothing */
+     * @return nothing.*/
     public void setGenres(ArrayList<Genre> genres) {this.genres = genres;}
     /**
      * This method <b>capitalized</b> the letter in <b>begin of each words</b> in the title.<p>
