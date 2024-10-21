@@ -106,7 +106,7 @@ public class Library {
                     System.out.println("#####Book with id '" + book.getId() + "' don't belong to " + name + " library.");
                 else   returnedBooks.add(book);
             }
-            member.returnBook(book);
+            member.returnBook(returnedBooks);
         }
     }
 
@@ -132,9 +132,7 @@ public class Library {
      */
     public void sortBooksByTitle() {
         books.sort(new Comparator<Book>() {
-            public int compare(Book book1, Book book2) {
-                return book1.getTitle().compareTo(book2.getTitle());
-            }
+            public int compare(Book book1, Book book2) {return book1.getTitle().compareTo(book2.getTitle());}
         });
     }
     /**
