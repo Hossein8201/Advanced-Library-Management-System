@@ -55,7 +55,7 @@ public class Library {
     public void addBook(Book... bookArray) {
         for (Book book : bookArray) {
             if (books.contains(book))   System.out.println("Book with id '" + book.getId() + "' is already exists in "+ name + " library.");
-            else if (book == null)   System.out.println("Book with id '" + book.getId() + "' does not identified.");
+            else if (book == null)   System.out.println("Book does not identified.");
             else books.add(book);
         }
     }
@@ -67,7 +67,7 @@ public class Library {
     public void addMember(Member... memberArray) {
         for (Member member : memberArray) {
             if (members.contains(member))   System.out.println("Member with id '" + member.getMemberId() + "' is already exists in "+ name + " library.");
-            else if (member == null)   System.out.println("Member with id '" + member.getMemberId() + "' does identified.");
+            else if (member == null)   System.out.println("Member does identified.");
             else members.add(member);
         }
     }
@@ -120,20 +120,23 @@ public class Library {
         for (Book book : books) {
             if (authorName.equalsIgnoreCase(book.getAuthor())){
                 if (bookWrittenByAuthor.isEmpty())      bookWrittenByAuthor.add("----Books written by author '" + authorName + "': ");
-                bookWrittenByAuthor.add(book.getTitle());
+                bookWrittenByAuthor.add(book.getTitle().toString());
             }
         } if (bookWrittenByAuthor.isEmpty()) bookWrittenByAuthor.add("Book that written by author '" + authorName + "' does not exist.");
         return bookWrittenByAuthor;
     }
     /**
      * This method do the <b>sorting process</b> based on Titles of collection of books.
-     * <b>note:</b> We use of sort method in collections and customize that to sort books by titles.
+     * <b>note:</b> We use of sort method in List type and customize that to sort books by titles. Then we add that to main variable.
      * @return nothing
      */
     public void sortBooksByTitle() {
-        books.sort(new Comparator<Book>() {
+        List<Book> sortedBooks = new ArrayList<>(books);        // First we convert the Collection type to List.
+        sortedBooks.sort(new Comparator<>() {               // We sort that List.
             public int compare(Book book1, Book book2) {return book1.getTitle().compareTo(book2.getTitle());}
         });
+        books.clear();      // We clear the books value.
+        books.addAll(sortedBooks);      // In finish, we add the sorted List into the Collection.
     }
     /**
      * This method shows us the <b>information</b> of a library and print that in console.
