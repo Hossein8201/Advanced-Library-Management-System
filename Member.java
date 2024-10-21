@@ -89,10 +89,10 @@ public class Member {
     /**
      * This method do the <b>borrowing process</b> for a member.<p>
      * We define many conditions to control the accuracy of process.
-     * @param books is input value and the object with Array type of Book class members that must be borrowed, we don't know have many they are.
+     * @param books is input value and the object with List type of Book class members that must be borrowed, we don't know have many they are.
      * @return nothing.
      */
-    public void borrowBook(Book... books) {
+    public void borrowBook(List<Book> books) {
         for (Book book : books) {
             if (book == null)   System.out.println("#####book cannot be null for member with '"+ name +"' name.");
             else if (borrowedBooks.contains(book))       System.out.println("#####That book with id '" + book.getId() + "' is already borrowed by " + name);
@@ -108,11 +108,11 @@ public class Member {
         }
     }
     /**
-     * This method do the <b>returning process</b> for a member.<p>
-     * @param books is input value and the object with Array type of Book class members that must be returned, we don't know have many they are.
+     * This method do the <b>returning process</b> for a member.
+     * @param books is input value and the object with List type of Book class members that must be returned, we don't know have many they are.
      * @return nothing
      */
-    public void returnBook(Book... books) {
+    public void returnBook(List<Book> books) {
         for (Book book : books) {
             if (!borrowedBooks.contains(book))   System.out.println("#####That book with id '" + book.getId() + "' is not borrowed by "+ name);
             else {
