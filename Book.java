@@ -133,6 +133,7 @@ public class Book {
         System.out.println("------Book Title: " + title.toString());
         System.out.println("------Book Author: " + author);
         System.out.print("------Book Genres: ");    for (Genre genre : genres) System.out.print(genre + " ");
+        System.out.println();
         System.out.println("------Book available in library: " + isAvailable);
         System.out.println(">>>The number of borrowing Times is '" + borrowCount + "' times and it tracked path's are :");
         for (String i: trackBorrowingTimes) {

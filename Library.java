@@ -55,7 +55,7 @@ public class Library {
     public void addBook(Book... bookArray) {
         for (Book book : bookArray) {
             if (books.contains(book))   System.out.println("Book with id '" + book.getId() + "' is already exists in "+ name + " library.");
-            else if (book == null)   System.out.println("Book does not identified.");
+            else if (book.getId() == null)   System.out.println("Book does not identified.");
             else books.add(book);
         }
     }
@@ -67,7 +67,7 @@ public class Library {
     public void addMember(Member... memberArray) {
         for (Member member : memberArray) {
             if (members.contains(member))   System.out.println("Member with id '" + member.getMemberId() + "' is already exists in "+ name + " library.");
-            else if (member == null)   System.out.println("Member does identified.");
+            else if (member.getMemberId() == null)   System.out.println("Member does not identified.");
             else members.add(member);
         }
     }

@@ -33,7 +33,7 @@ public class Member {
             System.out.println("memberId must be 6 digits long");
             System.out.println("#####the construct process failed for member with id: " + memberId);
         }
-        else if (address == null){
+        else if (address.getLicensePlate() == null){
             System.out.println("address cannot be null");
             System.out.println("#####the construct process failed for " + name + " member  with 'null' address.");
         }
@@ -80,7 +80,7 @@ public class Member {
      * @param newAddress is input value.
      * @return nothing. */
     public void updateAddress(Address newAddress) {
-        if (newAddress != null) this.address = newAddress;
+        if (newAddress.getLicensePlate() != null) this.address = newAddress;
         else{
             System.out.println("address cannot be null");
             System.out.println("#####the change address process failed for " + name + " member with 'null' address.");
@@ -94,8 +94,8 @@ public class Member {
      */
     public void borrowBook(List<Book> books) {
         for (Book book : books) {
-            if (book == null)   System.out.println("#####book cannot be null for member with '"+ name +"' name.");
-            else if (borrowedBooks.contains(book))       System.out.println("#####That book with id '" + book.getId() + "' is already borrowed by " + name);
+            if (book.getId() == null)   System.out.println("#####book cannot be null for member with '"+ name +"' name.");
+            else if (borrowedBooks.contains(book))   System.out.println("#####That book with id '" + book.getId() + "' is already borrowed by " + name);
             else if (borrowedBooks.size() >= 3)      System.out.println("#####Member '"+ name +"' can't borrowed more than 3 books");
             else if (!book.getIsAvailable())        System.out.println("#####That book with id '" + book.getId() + "' is not available in the library");
             else {
