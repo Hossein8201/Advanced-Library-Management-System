@@ -48,66 +48,100 @@ public class Library {
      * @return nothing. */
     public void setName(String name) {this.name = name;}
     /**
-     * This method do the <b>adding book process</b> for a library.<p>
-     * @param bookList is input value and the object with Array type of Book class members that must be added, we don't know have many they are.
+     * This method do the <b>adding book process</b> for a library.
+     * @param bookArray is input value and the object with Array type of Book class members that must be added, we don't know have many they are.
      * @return nothing
      */
-    public void addBook(Book... bookList) {
-        for (Book book : bookList) {
+    public void addBook(Book... bookArray) {
+        for (Book book : bookArray) {
             if (books.contains(book))   System.out.println("Book with id '" + book.getId() + "' is already exists in "+ name + " library.");
             else if (book == null)   System.out.println("Book with id '" + book.getId() + "' does not identified.");
             else books.add(book);
         }
     }
     /**
-     * This method do the <b>adding member process</b> for a library.<p>
-     * @param memberList is input value and the object with Array type of Member class members that must be added, we don't know have many they are.
+     * This method do the <b>adding member process</b> for a library.
+     * @param memberArray is input value and the object with Array type of Member class members that must be added, we don't know have many they are.
      * @return nothing
      */
-    public void addMember(Member... memberList) {
-        for (Member member : memberList) {
+    public void addMember(Member... memberArray) {
+        for (Member member : memberArray) {
             if (members.contains(member))   System.out.println("Member with id '" + member.getMemberId() + "' is already exists in "+ name + " library.");
             else if (member == null)   System.out.println("Member with id '" + member.getMemberId() + "' does identified.");
             else members.add(member);
         }
     }
-
-
-
-    //Method to borrow many books for a member
-    public void borrowBook(Member member, Book... bookList) {
+    /**
+     * This method do the <b>borrowing process</b> for a member.
+     * @param member is an object from Member class.
+     * @param bookArray is input value and the object with Array type of Book class members that must be borrowed, we don't know have many they are.
+     * @return nothing.
+     */
+    public void borrowBook(Member member, Book... bookArray) {
         if (!members.contains(member))
-            System.out.println("#####Member with id '" + member.getMemberId() + "' don't added to the library");
-        for (Book book : bookList) {
-            if (!books.contains(book))
-                System.out.println("#####Book with id '" + book.getId() + "' don't added to the library");
-            else    member.borrowBook(book);
+            System.out.println("#####Member with name '" + member.getName() + "' don't added to " + name + " library.");
+        else {
+            List<Book> borrowedBooks = new ArrayList<>();       // Create a List of book we can borrow that.
+            for (Book book : bookArray) {
+                if (!books.contains(book))
+                    System.out.println("#####Book with id '" + book.getId() + "' don't belong to " + name + " library.");
+                else    borrowedBooks.add(book);
+            }
+            member.borrowBook(borrowedBooks);
         }
     }
-    //Method to return many books for a member
-    public void returnBook(Member member, Book... bookList) {
+    /**
+     * This method do the <b>returning process</b> for a member.
+     * @param member is an object from Member class.
+     * @param bookArray is input value and the object with Array type of Book class members that must be returned, we don't know have many they are.
+     * @return nothing
+     */
+    public void returnBook(Member member, Book... bookArray) {
         if (!members.contains(member))
-            System.out.println("#####Member with id '" + member.getMemberId() + "' don't added to the library");
-        for (Book book : bookList) {
-            if (!books.contains(book))
-                System.out.println("#####Book with id '" + book.getId() + "' don't added to the library");
-            else    member.returnBook(book);
+            System.out.println("#####Member with name '" + member.getName() + "' don't added to " + name + " library.");
+        else {
+            List<Book> returnedBooks = new ArrayList<>();       // Create a List of book we can return that.
+            for (Book book : bookArray) {
+                if (!books.contains(book))
+                    System.out.println("#####Book with id '" + book.getId() + "' don't belong to " + name + " library.");
+                else   returnedBooks.add(book);
+            }
+            member.returnBook(book);
         }
     }
-    //Create printMemberInfo method
+
+    /**
+     * This method do the <b>searching and finding process</b> to give us the title of Books that was written by a specific author.
+     * @param authorName is a String type, We based on search the author of Books.
+     * @return a List of Strings that are the result of searching to find Books Written by authorName.
+     */
+    public List<String> findBooksByAuthor(String authorName) {
+        List<String> bookWrittenByAuthor = new ArrayList<>();
+        for (Book book : books) {
+            if (authorName.equalsIgnoreCase(book.getAuthor())){
+                if (bookWrittenByAuthor.isEmpty())      bookWrittenByAuthor.add("----Books written by author '" + authorName + "': ");
+                bookWrittenByAuthor.add(book.getTitle());
+            }
+        } if (bookWrittenByAuthor.isEmpty()) bookWrittenByAuthor.add("Book that written by author '" + authorName + "' does not exist.");
+        return bookWrittenByAuthor;
+    }
+    /**
+     * This method shows us the <b>information</b> of a library and print that in console.
+     * @return nothing
+     */
     public void printLibraryInfo() {
-        System.out.println("----Name: " + name);
-        System.out.println("----Books of the Library: ");
+        System.out.println("----Name of library: " + name);
+        System.out.println("----Books of " + name + " library: ");
         int numberIndex = 1;
         for (Book book : books) {
-            System.out.println(">>>Book: '" + numberIndex++ + "' :");
+            System.out.println(">>>Book '" + numberIndex++ + "' :");
             book.printBookInfo();
-        }if (books.isEmpty()) System.out.println("Don't exist any books in the library");
-        System.out.println("----Members of the Library: ");
+        }if (books.isEmpty()) System.out.println("Don't exist any books in " + name + " library.");
+        System.out.println("----Members of " + name + " library: ");
         numberIndex = 1;
         for (Member member : members) {
-            System.out.println(">>>Member: '" + numberIndex++ + "' :");
+            System.out.println(">>>Member '" + numberIndex++ + "' :");
             member.printMemberInfo();
-        }if (members.isEmpty()) System.out.println("Don't exist any members in the library");
+        }if (members.isEmpty()) System.out.println("Don't exist any members in " + name + " library.");
     }
 }
