@@ -1,9 +1,6 @@
 
 # Advanced Library Management System
 
-**Author**: Hossein Tatar  
-**Student Number**: 40133014  
-
 ## Project Overview
 
 The **Advanced Library Management System** is a Java-based application designed to manage books, members, and transactions within a library. It allows users to perform various operations such as borrowing and returning books, managing member information, and viewing details of the library's inventory. The project is built with a strong focus on object-oriented programming (OOP) principles and best practices.
